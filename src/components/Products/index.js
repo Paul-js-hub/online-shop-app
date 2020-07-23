@@ -1,49 +1,54 @@
 import React, { Component } from 'react';
-import huawei from '../../images/huawei-ac.jpg';
-import iphone from '../../images/iphone-11.jpg';
-import samsunga30 from '../../images/Samsung-Galaxy-A30si.jpg';
-import samsungs20 from '../../images/Samsung-galaxy-s20.jpg';
-import tecno from '../../images/Tecno-Camon-15-Premier.jpg';
+
+import './products.css';
 
 export class Products extends Component {
+
+    state = {
+        products:[{
+            name: 'Huawei-Nova-7i',
+            price: 'KSh 17,000',
+            image: 'https://www.gizmochina.com/wp-content/uploads/2020/01/nova-7i.jpg'
+        },
+        {
+            name: 'Iphone-11',
+            price: 'KSh KSh 75,000',
+            image: 'https://www.techinn.com/f/13735/137354158/apple-iphone-11-128gb-6.1.jpg'
+
+        },
+        {
+            name: 'Samsung-Galaxy-A30si',
+            price: 'KSh 25,000',
+            image: 'https://www.brightonline.co.ke/wp-content/uploads/2019/05/Samsung-Galaxy-A30si.jpg'
+        },
+        {
+            name: 'Samsung-Galaxy-s20',
+            price: 'KSh 45,000',
+            image: 'https://www.powerplanetonline.com/cdnassets/samsung_galaxy_s20_g980_4g_cloud_blue_04_ad_l.jpg'
+
+        },
+        {
+            name: 'Tecno-Camon-15-Premier',
+            price: 'KSh 35,000',
+            image: 'https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg'
+
+        }]
+    }
     render() {
+        const {products} = this.state;
         return (
-            <div className="products-container">
-                <div className="image">
-                <img src ={huawei} alt="Huawei" width="250" height="250"/>
-                <h3>Huawei-AC-SX569</h3>
-                <h3>KSh 17,000</h3>
-                <a href="#">ADD TO CART</a>
+        <div className="products-container">{
+            products.map((product) =>{
+            return (
+                <div className="product-image">
+                   <img src={product.image} alt={product.name} width="250" height="250" />
+                    <h3>{product.name}</h3>
+                    <h3>{product.price}</h3>
+                    <a>ADD TO CART</a>
                 </div>
-
-                <div className="image">
-                <img src ={iphone} alt="Iphone-11" width="250" height="250"/>
-                <h3>Iphone-11</h3>
-                <h3>KSh 75,000</h3>
-                <a href="#">ADD TO CART</a>
-                </div>
-
-                <div className="image">
-                <img src ={samsunga30} alt="Samsung A30" width="250" height="250"/>
-                <h3>Samsung-Galaxy-A30si</h3>
-                <h3>KSh 25,000</h3>
-                <a href="#">ADD TO CART</a>
-                </div>
-
-                <div className="image">
-                <img src ={samsungs20} alt="Samsung S20" width="250" height="250"/>
-                <h3>Samsung-Galaxy-s20</h3>
-                <h3>KSh 45,000</h3>
-                <a href="#">ADD TO CART</a>
-                </div>
-
-                <div className="image">
-                <img src ={tecno} alt="Tecno-Camon-15-Premier" width="250" height="250"/>
-                <h3>Tecno-Camon-15-Premier</h3>
-                <h3>KSh 17,000</h3>
-                <a href="#">ADD TO CART</a>
-                </div>
-            </div>
+            );
+            })
+        }</div>
             
         );
     }

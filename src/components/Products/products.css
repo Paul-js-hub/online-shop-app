@@ -1,0 +1,11 @@
+.products-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.product-image {
+    border: 1px darkgray solid;
+    margin: 12px 6px 6px 6px;
+    padding: 6px;
+}
