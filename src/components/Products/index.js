@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './products.css';
 
-export class Products extends Component {
+class Products extends Component {
 
     state = {
         products:[{
@@ -12,7 +12,7 @@ export class Products extends Component {
         },
         {
             name: 'Iphone-11',
-            price: 'KSh KSh 75,000',
+            price: 'KSh 75,000',
             image: 'https://www.techinn.com/f/13735/137354158/apple-iphone-11-128gb-6.1.jpg'
 
         },
@@ -32,19 +32,28 @@ export class Products extends Component {
             price: 'KSh 35,000',
             image: 'https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg'
 
-        }]
+        }],
+        quantity: 0
     }
+
+    addToCart = (quantity) =>{
+        console.log('Item added to cart')
+        this.setState({quantity: this.state.quantity + 1})
+    }
+
+
     render() {
-        const {products} = this.state;
+        const {products, quantity} = this.state;
         return (
         <div className="products-container">{
-            products.map((product) =>{
+            products.map((product, index) =>{
             return (
-                <div className="product-image">
+                <div className="product-image" key={index}>
                    <img src={product.image} alt={product.name} width="250" height="250" />
                     <h3>{product.name}</h3>
                     <h3>{product.price}</h3>
-                    <a>ADD TO CART</a>
+                    <button onClick = {this.addToCart}>ADD TO CART</button>
+                    <p>You have clicked {quantity} times</p>
                 </div>
             );
             })
