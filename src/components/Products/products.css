@@ -6,6 +6,11 @@
 
 .product-image {
     border: 1px darkgray solid;
-    margin: 12px 6px 6px 6px;
+    margin: 8px 3px 3px 3px;
     padding: 6px;
+}
+
+.ant-card-cover img {
+    height: 250px !important;
+    border-radius: 2px 2px 0 0;
 }
