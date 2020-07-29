@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateCart } from "../../actions/cart";
 import { Card } from "antd";
 import { Button } from "antd";
 
@@ -39,16 +41,21 @@ class Products extends Component {
           "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg",
       },
     ],
-    quantity: 0,
+    basket:{
+        items:[]
+    },
   };
 
-  addToCart = (quantity) => {
-    console.log("Item added to cart");
-    this.setState({ quantity: this.state.quantity + 1 });
+  addToCart = (product) => {
+    const { updateCart } = this.props;
+    const { basket} = this.state;
+    basket.items.push(product)
+    this.setState({ basket });
+    updateCart(basket);
   };
 
   render() {
-    const { products, quantity } = this.state;
+    const { products } = this.state;
     return (
       <div className="products-container">
         {products.map((product, index) => {
@@ -59,10 +66,9 @@ class Products extends Component {
                 cover={<img alt="example" src={product.image} />}
               >
                 <Meta title={product.name} description={product.price} />
-                <Button type="primary" onClick={this.addToCart} block>
+                <Button type="primary" onClick={() =>this.addToCart(product)} block>
                   ADD TO CART
                 </Button>
-                <p>You have clicked {quantity} times</p>
               </Card>
             </div>
           );
@@ -72,4 +78,12 @@ class Products extends Component {
   }
 }
 
-export default Products;
+const mapStateToProps = ({ cart }) => ({
+  cart,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateCart: (items) => dispatch(updateCart(items)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
