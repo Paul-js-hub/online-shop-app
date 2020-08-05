@@ -1,16 +1,19 @@
 
 const initialState = {
+  basketNumbers: 0,
   items: []
 };
 
 const cart = (state = initialState, action) => {
   const { payload } = action;
-  console.log('pay:', payload)
   switch (action.type) {
-    case 'UPDATE_CART':
-      return { ...state, ...payload };
+    case 'ADD_TO_CART':
+      return { ...state, 
+        ...payload,
+        basketNumbers: state.basketNumbers + 1 
+      };
     case 'REMOVE_FROM_CART':
-      return { ...state, ...payload };
+      return { ...state };
     default:
       return state;
   }

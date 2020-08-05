@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateCart } from "../../actions/cart";
+import { addToCart } from "../../actions/cart";
 import { Card } from "antd";
 import { Button } from "antd";
 
@@ -41,17 +41,18 @@ class Products extends Component {
           "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg",
       },
     ],
-    basket:{
+    cart:{
         items:[]
     },
   };
 
-  addToCart = (product) => {
-    const { updateCart } = this.props;
-    const { basket} = this.state;
-    basket.items.push(product)
-    this.setState({ basket });
-    updateCart(basket);
+  handleAddToCart = (product) => {
+    const { addToCart } = this.props;
+    const { cart} = this.state;
+    const products = cart.items.slice();
+    products.push(product)
+    this.setState({ cart: {items:products} });
+    addToCart(cart);
   };
 
   render() {
@@ -66,7 +67,7 @@ class Products extends Component {
                 cover={<img alt="example" src={product.image} />}
               >
                 <Meta title={product.name} description={product.price} />
-                <Button type="primary" onClick={() =>this.addToCart(product)} block>
+                <Button type="primary" onClick={() =>this.handleAddToCart(product)} block>
                   ADD TO CART
                 </Button>
               </Card>
@@ -78,12 +79,9 @@ class Products extends Component {
   }
 }
 
-const mapStateToProps = ({ cart }) => ({
-  cart,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-  updateCart: (items) => dispatch(updateCart(items)),
+  //explicitly forwarding arguments
+  addToCart: (items) => dispatch(addToCart(items)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(null, mapDispatchToProps)(Products);
