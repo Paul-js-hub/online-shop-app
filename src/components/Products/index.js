@@ -1,57 +1,39 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../actions/cart";
+import { getProducts } from "../../actions/products";
 import { Card } from "antd";
 import { Button } from "antd";
 
 import "./products.css";
+
 const { Meta } = Card;
 
 class Products extends Component {
   state = {
-    products: [
-      {
-        name: "Huawei-Nova-7i",
-        price: "KSh 17,000",
-        image:
-          "https://www.gizmochina.com/wp-content/uploads/2020/01/nova-7i.jpg",
-      },
-      {
-        name: "Iphone-11",
-        price: "KSh 75,000",
-        image:
-          "https://www.techinn.com/f/13735/137354158/apple-iphone-11-128gb-6.1.jpg",
-      },
-      {
-        name: "Samsung-Galaxy-A30si",
-        price: "KSh 25,000",
-        image:
-          "https://www.brightonline.co.ke/wp-content/uploads/2019/05/Samsung-Galaxy-A30si.jpg",
-      },
-      {
-        name: "Samsung-Galaxy-s20",
-        price: "KSh 45,000",
-        image:
-          "https://www.powerplanetonline.com/cdnassets/samsung_galaxy_s20_g980_4g_cloud_blue_04_ad_l.jpg",
-      },
-      {
-        name: "Tecno-Camon-15-Premier",
-        price: "KSh 35,000",
-        image:
-          "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg",
-      },
-    ],
-    cart:{
-        items:[]
+    products: [],
+    cart: {
+      items: [],
     },
   };
 
+  componentDidMount(props) {
+    console.log('PROPS:', props)
+    const { getProducts } = this.props;
+    getProducts({});
+  }
+
+  componentDidUpdate() {
+    const { products } = this.props;
+    this.setState({ products: products });
+  }
+
   handleAddToCart = (product) => {
     const { addToCart } = this.props;
-    const { cart} = this.state;
+    const { cart } = this.state;
     const products = cart.items.slice();
-    products.push(product)
-    this.setState({ cart: {items:products} });
+    products.push(product);
+    this.setState({ cart: { items: products } });
     addToCart(cart);
   };
 
@@ -67,7 +49,11 @@ class Products extends Component {
                 cover={<img alt="example" src={product.image} />}
               >
                 <Meta title={product.name} description={product.price} />
-                <Button type="primary" onClick={() =>this.handleAddToCart(product)} block>
+                <Button
+                  type="primary"
+                  onClick={() => this.handleAddToCart(product)}
+                  block
+                >
                   ADD TO CART
                 </Button>
               </Card>
@@ -78,10 +64,16 @@ class Products extends Component {
     );
   }
 }
+const mapStateToProps = (state) =>{
+  return {
+    products: state.data,
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   //explicitly forwarding arguments
   addToCart: (items) => dispatch(addToCart(items)),
+  getProducts: (products) => dispatch(getProducts(products.data)),
 });
 
-export default connect(null, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
