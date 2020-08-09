@@ -13,7 +13,6 @@ class NavHeader extends Component {
   render(){
     const {cart} = this.props
     const count = cart.basketNumbers
-    console.log('count:', count)
     return (
       <Layout className="layout">
     <Header>

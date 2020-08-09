@@ -17,20 +17,19 @@ class Products extends Component {
     },
   };
 
-  componentDidMount(props) {
-    console.log('PROPS:', props)
+  componentDidMount() {
     const { getProducts } = this.props;
-    getProducts({});
+    this.setState(() =>{ getProducts() })
   }
 
   componentDidUpdate() {
-    const { products } = this.props;
-    this.setState({ products: products });
+    const { data } = this.props;
+      this.setState({ data: data });
   }
 
   handleAddToCart = (product) => {
     const { addToCart } = this.props;
-    const { cart } = this.state;
+    const { cart } = this.props;
     const products = cart.items.slice();
     products.push(product);
     this.setState({ cart: { items: products } });
@@ -39,6 +38,7 @@ class Products extends Component {
 
   render() {
     const { products } = this.state;
+    console.log('PRO: ', products)
     return (
       <div className="products-container">
         {products.map((product, index) => {
@@ -66,14 +66,14 @@ class Products extends Component {
 }
 const mapStateToProps = (state) =>{
   return {
-    products: state.data,
+    data: state.data,
   }
 };
 
 const mapDispatchToProps = (dispatch) => ({
   //explicitly forwarding arguments
   addToCart: (items) => dispatch(addToCart(items)),
-  getProducts: (products) => dispatch(getProducts(products.data)),
+  getProducts: (products) => dispatch(getProducts(products)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
