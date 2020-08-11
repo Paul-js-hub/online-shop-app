@@ -61,11 +61,9 @@ class Products extends Component {
     )
   }
 }
-const mapStateToProps = ({ products }) => { // check the change I made here
-  return {
+const mapStateToProps = ({ products }) => ({ // check the change I made here
     products: products.data 
-  }
-}
+});
 
 const mapDispatchToProps = dispatch => ({
   //explicitly forwarding arguments
