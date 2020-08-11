@@ -20,7 +20,7 @@ class Products extends Component {
   componentDidMount() {
     const { getProducts, products } = this.props;
     console.log("Get:", getProducts)
-    getProducts();
+    getProducts({});
 
     if(this.state.products.length === 0){
       this.setState({products:products})
