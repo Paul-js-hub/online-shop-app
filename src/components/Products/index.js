@@ -17,16 +17,16 @@ class Products extends Component {
     },
   };
 
-  componentDidMount(props) {
-    console.log('PROPS:', props)
-    const { getProducts } = this.props;
+  componentDidMount() {
+    const { getProducts, products } = this.props;
+    console.log("Get:", getProducts)
     getProducts({});
+
+    if(this.state.products.length === 0){
+      this.setState({products:products})
+    }
   }
 
-  componentDidUpdate() {
-    const { products } = this.props;
-    this.setState({ products: products });
-  }
 
   handleAddToCart = (product) => {
     const { addToCart } = this.props;
@@ -64,11 +64,9 @@ class Products extends Component {
     );
   }
 }
-const mapStateToProps = (state) =>{
-  return {
-    products: state.data,
-  }
-};
+const mapStateToProps = ({products}) =>({
+    products: products.data,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   //explicitly forwarding arguments
