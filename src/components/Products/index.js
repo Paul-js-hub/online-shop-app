@@ -19,7 +19,6 @@ class Products extends Component {
 
   componentDidMount() {
     const { getProducts, products } = this.props;
-    console.log("Get:", getProducts)
     getProducts({});
 
     if(this.state.products.length === 0){
@@ -28,12 +27,12 @@ class Products extends Component {
   }
 
 
-  handleAddToCart = (product) => {
+  handleAddToCart = (item) => {
     const { addToCart } = this.props;
     const { cart } = this.state;
-    const products = cart.items.slice();
-    products.push(product);
-    this.setState({ cart: { items: products } });
+    const items = cart.items.slice();
+    items.push(item);
+    this.setState({ cart: { items: items } });
     addToCart(cart);
   };
 
