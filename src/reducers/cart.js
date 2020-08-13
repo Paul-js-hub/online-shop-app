@@ -1,20 +1,22 @@
-import products from '../reducers/products'
+
 const initialState = {
-  basketNumbers: 0,  
+  basketNumbers: 0,
 };
 
 const cart = (state = initialState, action) => {
   const { payload } = action;
   switch (action.type) {
     case 'ADD_TO_CART':
-      let addQuantity = {products}
-      console.log('AddQuantity: ', addQuantity)
       return { ...state, 
         ...payload,
         basketNumbers: state.basketNumbers + 1 
       };
     case 'REMOVE_FROM_CART':
-      return { ...state };
+      return { ...state, ...payload };
+    case 'INCREASE':
+      return { ...state, ...payload };
+    case 'DECREASE':
+      return { ...state, ...payload}
     default:
       return state;
   }
