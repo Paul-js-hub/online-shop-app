@@ -5,6 +5,11 @@ import { getProducts } from "../../actions/products";
 
 const CartItem = ({products}) =>{
     console.log('PRODUCTS: ', products)
+    let itemsInCart = [];
+
+    Object.keys(products).forEach((item)=>{
+        console.log('ITEMCLICKED: ', products[item].image)
+    })
     return (
         <div>
            

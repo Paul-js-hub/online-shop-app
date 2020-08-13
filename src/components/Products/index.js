@@ -47,7 +47,7 @@ class Products extends Component {
                 style={{ width: 250 }}
                 cover={<img alt="example" src={product.image} />}
               >
-                <Meta title={product.name} description={product.price} />
+                <Meta title={product.name} description= {product.price} />
                 <Button
                   type="primary"
                   onClick={() => this.handleAddToCart(product)}
