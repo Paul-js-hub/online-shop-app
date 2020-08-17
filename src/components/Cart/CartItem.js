@@ -1,32 +1,41 @@
-import React from 'react'
-import { connect } from "react-redux"
-import { addToCart } from "../../actions/cart";
-import { getProducts } from "../../actions/products";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { PlusCircleOutlined, MinusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
+import { Button } from "antd"
+import { increase } from "../../actions/cart"
 
-const CartItem = ({products}) =>{
-    console.log('PRODUCTS: ', products)
-    let itemsInCart = [];
-
-    Object.keys(products).forEach((item)=>{
-        console.log('ITEMCLICKED: ', products[item].image)
-    })
-    return (
-        <div>
-           
-        </div>
-    )
+class CartItem extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Cart Items</h3>
+                <div>
+                    <img 
+                    alt = ""
+                    src = "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg"
+                    width = "150"
+                    height = "150"
+                    />
+                    <h4><strong><span>name</span></strong></h4>
+                </div>
+                <div className="price">price</div>
+                <div className="quantity"></div>
+                <div className="quantity-modified">
+                <Button><PlusCircleOutlined 
+                onClick = {(quantity) => increase(this.props.quantity)}
+                width={"20px"}/></Button>
+                <Button><MinusCircleOutlined width={"20px"}/></Button>
+                <Button><DeleteOutlined width={"20px"}/></Button>
+                </div>
+                <div>Total: </div>
+            </div>
+        )
+    }
 }
 
-const mapStateToProps = ({products}) =>({
-    products: products.data,
-});
-
-
 const mapDispatchToProps = (dispatch) => ({
-    //explicitly forwarding arguments
-    addToCart: (items) => dispatch(addToCart(items)),
-    getProducts: (products) => dispatch(getProducts(products.data)),
-  });
-  
+    increase: quantity => dispatch(increase(quantity))
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem)
+
+export default connect(mapDispatchToProps)(CartItem)
