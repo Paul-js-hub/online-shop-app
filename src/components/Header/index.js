@@ -12,8 +12,7 @@ const { Header } = Layout;
 class NavHeader extends Component {
   render() {
     const { cart } = this.props;
-    const count = cart.basketNumbers;
-    console.log("count:", count);
+    const count = cart.items.length++;
     return (
       <Layout className="layout">
         <Header>
@@ -22,8 +21,7 @@ class NavHeader extends Component {
           </div>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
               <Menu.Item key="1"><Link to="/">Products</Link></Menu.Item>
-              <Menu.Item key="2">Login</Menu.Item>
-              <Menu.Item key="3" className="cart"><Icon icon={shoppingCartOutlined} /><Link to ='/cart'>Cart <span>{count}</span>{" "} </Link></Menu.Item>
+              <Menu.Item key="2" className="cart"><Icon icon={shoppingCartOutlined} /><Link to ='/cart'>Cart <span>{count}</span>{" "} </Link></Menu.Item>
           </Menu>
         </Header>
       </Layout>

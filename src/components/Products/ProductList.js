@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+import Product from '../Products/Product'
 import { addToCart } from "../../actions/cart";
 import { getProducts } from "../../actions/products";
-import { Card } from "antd";
-import { Button } from "antd";
+
 
 import "./products.css";
 
-const { Meta } = Card;
 
-class Products extends Component {
+
+class ProductList extends Component {
   state = {
     products: [],
     cart: {
@@ -37,26 +38,16 @@ class Products extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     return (
       <div className="products-container">
         {products.map((product, index) => {
           return (
-            <div className="product-image" key={index}>
-              <Card
-                style={{ width: 250 }}
-                cover={<img alt="example" src={product.image} />}
-              >
-                <Meta title={product.name} description= {product.price} />
-                <Button
-                  type="primary"
-                  onClick={() => this.handleAddToCart(product)}
-                  block
-                >
-                  ADD TO CART
-                </Button>
-              </Card>
-            </div>
+            <Product 
+            product ={product}
+            handleAddToCart = {this.handleAddToCart}
+            key = {index}
+            />
           );
         })}
       </div>
@@ -73,4 +64,4 @@ const mapDispatchToProps = (dispatch) => ({
   getProducts: (products) => dispatch(getProducts(products.data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
