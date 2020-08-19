@@ -1,15 +1,34 @@
 import React, { Component } from 'react'
-import CartItem from '../Cart/CartItem'
+import { connect } from 'react-redux'
+//import CartItem from '../Cart/CartItem'
 
 class Cart extends Component {
     render() {
-        return (
+        const {cart} = this.props;
+        return(
             <div>
-                <CartItem />
+                {cart.items.length === 0 ?(
+                    <div><h2>Cart is empty</h2></div>
+                ) : (
+                    <div>
+                        <h2>You have { cart.items.length } in Cart</h2>
+                    </div>
+                )}
+                {
+                    cart.items.map((item) =>{
+                        return(
+                            <div></div>
+                        )
+                    })
+                }
             </div>
         )
+       
     }
 }
 
+const mapStateToProps = ({cart}) =>({
+    cart
+})
 
-export default Cart
+export default connect(mapStateToProps)(Cart)
