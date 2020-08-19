@@ -6,17 +6,18 @@ import { increase } from "../../actions/cart"
 
 class CartItem extends Component {
     render() {
+        const {item} = this.props
         return (
             <div>
                 <h3>Cart Items</h3>
                 <div>
                     <img 
                     alt = ""
-                    src = "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg"
+                    src = {item.image}
                     width = "150"
                     height = "150"
                     />
-                    <h4><strong><span>name</span></strong></h4>
+                    <h4><strong><span>{item.product.name}</span></strong></h4>
                 </div>
                 <div className="price">price</div>
                 <div className="quantity"></div>

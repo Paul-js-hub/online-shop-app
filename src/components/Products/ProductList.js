@@ -8,33 +8,20 @@ import { getProducts } from "../../actions/products";
 
 import "./products.css";
 
-
-
 class ProductList extends Component {
-  state = {
-    products: [],
-    cart: {
-      items: [],
-    },
-  };
 
   componentDidMount() {
-    const { getProducts, products } = this.props;
+    const { getProducts } = this.props;
     getProducts({});
-
-    if(this.state.products.length === 0){
-      this.setState({products:products})
-    }
   }
 
 
-  handleAddToCart = (item) => {
-    const { addToCart } = this.props;
-    const { cart } = this.state;
+  handleAddToCart = (product) => {
+    console.log('PRODUCT: ', product)
+    const { addToCart, cart } = this.props;
     const items = cart.items.slice();
-    items.push(item);
-    this.setState({ cart: { items: items } });
-    addToCart(cart);
+    items.push(product)
+    addToCart({items});
   };
 
   render() {
@@ -54,8 +41,9 @@ class ProductList extends Component {
     );
   }
 }
-const mapStateToProps = ({products}) =>({
+const mapStateToProps = ({products, cart}) =>({
     products: products.data,
+    cart
 });
 
 const mapDispatchToProps = (dispatch) => ({
