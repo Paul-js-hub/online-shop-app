@@ -9,15 +9,21 @@ import { getProducts } from "../../actions/products";
 import "./products.css";
 
 class ProductList extends Component {
-
+  state = {
+    products:[]
+  }
   componentDidMount() {
     const { getProducts } = this.props;
     getProducts({});
   }
 
+  getItem = (id) =>{
+    const { products } = this.state;
+    const product = products.find(item => item.id === id);
+    return product;
+  }
 
   handleAddToCart = (product) => {
-    console.log('PRODUCT: ', product)
     const { addToCart, cart } = this.props;
     const items = cart.items.slice();
     items.push(product)
@@ -28,12 +34,13 @@ class ProductList extends Component {
     const { products } = this.props;
     return (
       <div className="products-container">
-        {products.map((product, index) => {
+        {products.map((product) => {
           return (
             <Product 
             product ={product}
             handleAddToCart = {this.handleAddToCart}
-            key = {index}
+            key = {product.id}
+            inCart = {this.props.cart.length>0 && this.props.cart.filter(e => e.product.id === product.id).length > 0 }
             />
           );
         })}
