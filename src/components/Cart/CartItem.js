@@ -18,7 +18,6 @@ class CartItem extends Component {
   addToCart = (type) => {
   };
   render() {
-    const { count } = this.state;
     const { item } = this.props;
     return (
       <div>
@@ -39,7 +38,7 @@ class CartItem extends Component {
               width={"20px"}
             />
           </Button>
-          <span className="count">{count}</span>
+          <span className="count">{item.count}</span>
           <Button>
             <MinusCircleOutlined width={"20px"} 
             onClick={() => this.addToCart("reduce")}

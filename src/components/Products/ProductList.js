@@ -17,16 +17,17 @@ class ProductList extends Component {
     getProducts({});
   }
 
-  getItem = (id) =>{
-    const { products } = this.state;
-    const product = products.find(item => item.id === id);
-    return product;
-  }
-
   handleAddToCart = (product) => {
     const { addToCart, cart } = this.props;
     const items = cart.items.slice();
-    items.push(product)
+    const index = items.findIndex((item)=> item.id === product.id)
+    if(index > -1){
+      const count = items[index].count + 1
+      items[index] = {...items[index], count}
+    } else{
+      items.push({...product, count: 1})
+    }
+    
     addToCart({items});
   };
 
@@ -40,7 +41,7 @@ class ProductList extends Component {
             product ={product}
             handleAddToCart = {this.handleAddToCart}
             key = {product.id}
-            inCart = {this.props.cart.length>0 && this.props.cart.filter(e => e.product.id === product.id).length > 0 }
+            //inCart = {this.props.cart.length>0 && this.props.cart.filter(e => e.product.id === product.id).length > 0 }
             />
           );
         })}
