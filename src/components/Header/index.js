@@ -12,7 +12,7 @@ const { Header } = Layout;
 class NavHeader extends Component {
   render() {
     const { cart } = this.props;
-    const count = cart.items.length;
+    const count = cart.items.reduce((acc, item) => (acc += item.count), 0);
     return (
       <Layout className="layout">
         <Header>

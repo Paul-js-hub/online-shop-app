@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CartItem from '../Cart/CartItem'
+import CartItem from "../Cart/CartItem";
 
 import { increase } from "../../actions/cart";
 import { addToCart } from "../../actions/cart";
-
 
 class Cart extends Component {
   render() {
@@ -17,17 +16,11 @@ class Cart extends Component {
           </div>
         ) : (
           <div>
-            <h2>You have {cart.items.length} in Cart</h2>
+            {cart.items.map((item) => {
+              return <CartItem key={item.id} item={item} />;
+            })}
           </div>
         )}
-        {cart.items.map((item) => {
-          return (
-            <CartItem 
-            key={item.id}
-            item={item}
-            />
-          );
-        })}
       </div>
     );
   }
