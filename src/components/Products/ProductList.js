@@ -19,7 +19,7 @@ class ProductList extends Component {
 
   handleAddToCart = (product) => {
     const { addToCart, cart } = this.props;
-    const items = cart.items.slice();
+    const items = [...cart.items] // like cart.items.slice()
     const index = items.findIndex((item)=> item.id === product.id)
     if(index > -1){
       const count = items[index].count + 1
@@ -41,7 +41,6 @@ class ProductList extends Component {
             product ={product}
             handleAddToCart = {this.handleAddToCart}
             key = {product.id}
-            //inCart = {this.props.cart.length>0 && this.props.cart.filter(e => e.product.id === product.id).length > 0 }
             />
           );
         })}

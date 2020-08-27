@@ -6,7 +6,6 @@ const initialState = {
       price: 17000,
       image:
         "https://www.gizmochina.com/wp-content/uploads/2020/01/nova-7i.jpg",
-      total: 0
     },
     {
       id: 2,
@@ -14,7 +13,6 @@ const initialState = {
       price: 75000,
       image:
         "https://www.techinn.com/f/13735/137354158/apple-iphone-11-128gb-6.1.jpg",
-      total: 0
     },
     {
       id: 3,
@@ -22,7 +20,6 @@ const initialState = {
       price: 25000,
       image:
         "https://www.brightonline.co.ke/wp-content/uploads/2019/05/Samsung-Galaxy-A30si.jpg",
-      total: 0
     },
     {
       id: 4,
@@ -30,7 +27,6 @@ const initialState = {
       price: 45000,
       image:
         "https://www.powerplanetonline.com/cdnassets/samsung_galaxy_s20_g980_4g_cloud_blue_04_ad_l.jpg",
-      total: 0
     },
     {
       id: 5,
@@ -38,7 +34,6 @@ const initialState = {
       price: 35000,
       image:
         "https://www.phoneplacekenya.com/wp-content/uploads/2020/05/Tecno-Camon-15-Premier.jpg",
-      total: 0
     },
   ],
 };
