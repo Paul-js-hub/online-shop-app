@@ -13,7 +13,9 @@ const cart = (state = initialState, action) => {
     case 'INCREASE':
       return { ...state, ...payload };
     case 'DECREASE':
-      return { ...state, ...payload}
+      return { ...state, ...payload};
+    case 'CLEAR_CART':
+      return { ...state, items: [] };
     default:
       return state;
   }

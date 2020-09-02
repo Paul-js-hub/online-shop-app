@@ -19,3 +19,9 @@ export const decrease = payload => ({
   payload
 })
 
+export const clearCart = payload => ({
+  type: 'CLEAR_CART',
+  payload
+})
+
+

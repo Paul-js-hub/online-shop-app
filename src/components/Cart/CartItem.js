@@ -11,11 +11,6 @@ import { increase } from "../../actions/cart";
 import "./cart.css"
 
 class CartItem extends Component {
-  state = {
-    count: 0,
-    unitPrice: 0.0,
-    total: 0.0,
-  };
 
   addToCart = (type) => {};
   render() {

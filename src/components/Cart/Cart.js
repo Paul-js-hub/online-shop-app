@@ -1,20 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "../Cart/CartItem";
+import CartTotals from "../Cart/CartTotals";
+import { Button } from "antd";
 
 import { increase } from "../../actions/cart";
 import { addToCart } from "../../actions/cart";
+import { clearCart } from "../../actions/cart";
 
-import "./cart.css"
+import "./cart.css";
 
 class Cart extends Component {
+  state = {
+    count: 0,
+    unitPrice: 0.0,
+    total: 0.0,
+  };
   render() {
-    const { cart } = this.props;
+    const { cart, clearCart } = this.props;
     return (
       <div>
+        <h1>Cart</h1>
         {cart.items.length === 0 ? (
-          <div>
-            <h2>Cart is empty</h2>
+          <div className="cartEmptyContainer">
+            <img
+              src="https://toppng.com/public/uploads/preview/shopping-cart-sign-shopping-cart-empty-ico-11563228005rnccz3lvl0.png"
+              alt=""
+              width="150"
+              height="150"
+            />
+            <h2 className="cart-empty-title">Your Cart is empty</h2>
           </div>
         ) : (
           <div>
@@ -28,6 +43,10 @@ class Cart extends Component {
             {cart.items.map((item) => {
               return <CartItem key={item.id} item={item} />;
             })}
+            {/* <CartTotals /> */}
+            <div className="cartClearTotalContainer">
+            <Button onClick={ clearCart }>Clear Cart</Button>
+          </div>
           </div>
         )}
       </div>
@@ -42,6 +61,7 @@ const mapStateToProps = ({ cart }) => ({
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (items) => dispatch(addToCart(items)),
   increase: (quantity) => dispatch(increase(quantity)),
+  clearCart: () => dispatch(clearCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
