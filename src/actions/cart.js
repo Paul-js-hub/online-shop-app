@@ -4,12 +4,12 @@ export const addToCart = (payload) => ({
   payload
 });
 
-export const removeFromCart = payload => ({
+export const removeFromCart = id => ({
   type: 'REMOVE_FROM_CART',
-  payload
+  id
 })
 
-export const increase =payload => ({
+export const increase = payload => ({
   type: 'INCREASE',
   payload
 })
