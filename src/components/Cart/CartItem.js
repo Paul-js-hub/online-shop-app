@@ -6,13 +6,17 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import { Button } from "antd";
-import { increase } from "../../actions/cart";
+import { removeFromCart} from "../../actions/cart";
 
 import "./cart.css"
 
 class CartItem extends Component {
 
-  addToCart = (type) => {};
+  handleRemove = (e) => {
+    const { removeFromCart, item } = this.props
+    removeFromCart(item.id);
+  }
+
   render() {
     const { item } = this.props;
     return (
@@ -41,9 +45,9 @@ class CartItem extends Component {
             </Button>
           </div>
           <div className="remove">
-              <Button>
-                <DeleteOutlined width={"20px"} />
-              </Button>
+                <DeleteOutlined width={"20px"} 
+                onClick ={this.handleRemove}
+                />
             </div>
           <div className="total"> Ksh{item.count * item.price}</div>
         </div>
@@ -52,8 +56,11 @@ class CartItem extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  increase: (id) => dispatch(increase(id)),
+const mapDispatchToProps = dispatch => ({
+  // increase: (id) => dispatch(increase(id)),
+  removeFromCart: (id) => dispatch(removeFromCart(id))
+  
 });
 
-export default connect(mapDispatchToProps)(CartItem);
+
+export default connect(null, mapDispatchToProps)(CartItem);

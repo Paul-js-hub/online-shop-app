@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import CartItem from "../Cart/CartItem";
-import CartTotals from "../Cart/CartTotals";
+//import CartTotals from "../Cart/CartTotals";
 import { Button } from "antd";
 
-import { increase } from "../../actions/cart";
-import { addToCart } from "../../actions/cart";
 import { clearCart } from "../../actions/cart";
 
 import "./cart.css";
@@ -16,6 +14,7 @@ class Cart extends Component {
     unitPrice: 0.0,
     total: 0.0,
   };
+
   render() {
     const { cart, clearCart } = this.props;
     return (
@@ -59,8 +58,6 @@ const mapStateToProps = ({ cart }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (items) => dispatch(addToCart(items)),
-  increase: (quantity) => dispatch(increase(quantity)),
   clearCart: () => dispatch(clearCart()),
 });
 
