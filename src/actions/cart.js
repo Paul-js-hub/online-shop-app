@@ -9,14 +9,14 @@ export const removeFromCart = id => ({
   id
 })
 
-export const increase = payload => ({
+export const increase = id => ({
   type: 'INCREASE',
-  payload
+  id
 })
 
-export const decrease = payload => ({
+export const decrease = id => ({
   type: 'DECREASE',
-  payload
+  id
 })
 
 export const clearCart = payload => ({

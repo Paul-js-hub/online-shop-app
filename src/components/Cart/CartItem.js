@@ -5,16 +5,24 @@ import {
   MinusCircleOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { Button } from "antd";
-import { removeFromCart} from "../../actions/cart";
+import { removeFromCart, increase, decrease } from "../../actions/cart";
 
-import "./cart.css"
+import "./cart.css";
 
 class CartItem extends Component {
-
   handleRemove = (e) => {
-    const { removeFromCart, item } = this.props
+    const { removeFromCart, item } = this.props;
     removeFromCart(item.id);
+  };
+
+  handleIncrease = () =>{
+    const { increase, item } = this.props;
+    increase(item.id);
+  }
+
+  handleDecrease = () =>{
+    const { decrease, item } = this.props;
+    decrease(item.id);
   }
 
   render() {
@@ -30,25 +38,19 @@ class CartItem extends Component {
           </div>
           <div className="price">Ksh{item.price}</div>
           <div className="quantity">
-            <Button>
               <PlusCircleOutlined
-                onClick={() => this.addToCart("increase")}
+                onClick={this.handleIncrease}
                 width={"20px"}
               />
-            </Button>
             <span className="count">{item.count}</span>
-            <Button>
               <MinusCircleOutlined
                 width={"20px"}
-                onClick={() => this.addToCart("reduce")}
+                onClick={this.handleDecrease}
               />
-            </Button>
           </div>
           <div className="remove">
-                <DeleteOutlined width={"20px"} 
-                onClick ={this.handleRemove}
-                />
-            </div>
+              <DeleteOutlined width={"20px"} onClick={this.handleRemove} />
+          </div>
           <div className="total"> Ksh{item.count * item.price}</div>
         </div>
       </div>
@@ -56,11 +58,10 @@ class CartItem extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  // increase: (id) => dispatch(increase(id)),
-  removeFromCart: (id) => dispatch(removeFromCart(id))
-  
+const mapDispatchToProps = (dispatch) => ({
+  increase: (id) => dispatch(increase(id)),
+  decrease: (id) => dispatch(decrease(id)),
+  removeFromCart: (id) => dispatch(removeFromCart(id)),
 });
-
 
 export default connect(null, mapDispatchToProps)(CartItem);

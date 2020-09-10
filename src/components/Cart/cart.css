@@ -82,3 +82,11 @@
     margin-top: 156px;
     margin-left: -160px;
 }
+
+.cartClearTotalContainer {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
