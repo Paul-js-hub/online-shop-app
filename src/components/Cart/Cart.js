@@ -44,7 +44,7 @@ class Cart extends Component {
             })}
             {/* <CartTotals /> */}
             <div className="cartClearTotalContainer">
-            <Button onClick={ clearCart }>Clear Cart</Button>
+            <Button type="primary" onClick={ clearCart }>Clear Cart</Button>
           </div>
           </div>
         )}
