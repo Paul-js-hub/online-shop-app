@@ -19,7 +19,7 @@ class NavHeader extends Component {
           <div className="logo">
             <h2>SHOP</h2>
           </div>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[""]}>
             <Menu.Item key="1">
               <Link to="/">Products</Link>
             </Menu.Item>

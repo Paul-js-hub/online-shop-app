@@ -67,6 +67,7 @@
 
 .products img{
     width: 75px;
+    object-fit: contain;
 }
 
 .product h4{
@@ -83,10 +84,42 @@
     margin-left: -160px;
 }
 
-.cartClearTotalContainer {
+.cartTotal {
     width: 100%;
     max-width: 1000px;
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
+    padding: 10px;
+    margin-left: 150px;
+}
+
+.optionsCart {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 10px;
+    margin-left: 195px;
+    justify-content: flex-end;
+    padding: 10px
+}
+
+.optionsCartButtons {
+    margin-left: 12px;
+}
+
+.optionsQuantity {
+    padding: 12px;
+}
+
+.optionRemove {
+    padding: 12px;
+}
+
+.cart > h1 {
+    display:flex;
+    max-width: 1000px;
+    width: 100%;
+    justify-content: flex-start;
+    margin: 0 auto;
 }
