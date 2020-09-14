@@ -15,15 +15,15 @@ class CartItem extends Component {
     removeFromCart(item.id);
   };
 
-  handleIncrease = () =>{
+  handleIncrease = () => {
     const { increase, item } = this.props;
     increase(item.id);
-  }
+  };
 
-  handleDecrease = () =>{
+  handleDecrease = () => {
     const { decrease, item } = this.props;
     decrease(item.id);
-  }
+  };
 
   render() {
     const { item } = this.props;
@@ -38,18 +38,16 @@ class CartItem extends Component {
           </div>
           <div className="price">Ksh{item.price}</div>
           <div className="quantity">
-              <PlusCircleOutlined
-                onClick={this.handleIncrease}
-                width={"20px"}
-              />
+            <div className ="optionsQuantity">
+            <MinusCircleOutlined width={"20px"} onClick={this.handleDecrease} />
             <span className="count">{item.count}</span>
-              <MinusCircleOutlined
-                width={"20px"}
-                onClick={this.handleDecrease}
-              />
+            <PlusCircleOutlined onClick={this.handleIncrease} width={"20px"} />
+            </div>
           </div>
           <div className="remove">
-              <DeleteOutlined width={"20px"} onClick={this.handleRemove} />
+            <div className="optionRemove">
+            <DeleteOutlined width={"20px"} onClick={this.handleRemove} />
+            </div>
           </div>
           <div className="total"> Ksh{item.count * item.price}</div>
         </div>
